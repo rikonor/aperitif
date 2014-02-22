@@ -1,0 +1,239 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lobster', cursive;
+	color: #e2b12e;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+	font-weight: normal;
+}
+
+h3 { font-size: 40px; }
+h5 { font-size: 30px; }
+h6 { font-size: 20px; }
+
+body {
+	background: url(/images/noise.png);
+	font-family: Century Gothic, sans-serif;
+	font-size: 14px;
+	min-width: 960px;
+	margin: 0;
+}
+
+#header {
+	position: relative;
+	width: 960px;
+	height: 150px;
+	margin: auto;
+	background: url(/images/bg.png);
+}
+
+#logo {
+	position: absolute;
+	left: -70px;
+	width: 240px;
+	height: 115px;
+	float: left;
+	margin-top: 30px;
+	background-color: black;
+}
+
+#navBar {
+	position: absolute;
+	left: 145px;
+	width: 620px;
+}
+
+#navBarList {
+	font-family: 'Lobster', cursive;
+	width: 620px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	font-size: 22px;
+	/*letter-spacing: 1px;*/
+	/*list-style-type: none;*/
+}
+
+#navBarList li {
+	width: 120px;
+	height: 150px;
+	float: left;
+	list-style: none;
+}
+
+#navBarList li a {
+	letter-spacing: 2px;
+	display: block;
+	color: black;
+	width: 95px;
+	height: 85px;
+	padding: 65px 0 0 0;
+	margin: 0 9px 0 32px;
+	text-decoration: none;
+	background: url(/images/label.png) 0 -149px no-repeat;
+	-webkit-transition: all .20s ease-in;
+	transition: all .20s ease-in;
+}
+
+#navBarList li a:hover, #navBarList li .current {
+	background: url(/images/label.png) 0 0 no-repeat;
+	color: #e2b12e;
+	-webkit-transition: all .20s ease-out;
+	transition: all .20s ease-out;
+}
+
+#userLog {
+	padding-top: 50px;
+	padding-right: 30px;
+	float: right;
+}
+
+#userLog h6, #userLog h6 a {
+	margin: 0;
+	color: black;
+}
+
+#content {
+	width: 960px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+label {
+	font-size: 22px;
+	font-family: 'Lobster', cursive;
+	color: #e2b12e;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+	font-weight: normal;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select {
+	width: 300px;
+	outline: none;
+	border: 1px dotted #e2b12e;
+	font-size: 14px;
+	padding: 3px;
+}
+
+form textarea {
+	width: 360px;
+	outline: none;
+	border: 1px dashed #e2b12e;
+	font-size: 14px;
+	padding: 3px;
+	resize: none;
+}
+
+.button {
+	cursor: pointer;
+	font-family: 'Lobster', cursive;
+	color: #f4f4f4;
+	padding: 8px 14px 10px;
+	background-color: #e2b12e;
+	border: none;
+	position: relative;
+
+	text-decoration: none;
+	font-size: 20px;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    -webkit-box-shadow: inset 0px -3px 1px rgba(0,0,0,0.45), 0px 2px 2px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0px -3px 1px rgba(0,0,0,0.45), 0px 2px 2px rgba(0,0,0,0.25);
+    box-shadow: inset 0px -3px 1px rgba(0,0,0,0.45), 0px 2px 2px rgba(0,0,0,0.25);
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+    -moz-text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+a {
+	color: #e2b12e;
+	text-decoration: none;
+}
+/* Table rules */
+
+table {
+	width: 100%;
+}
+
+table th, table td {
+	padding: 4px;
+	line-height: 20px;
+	text-align: left;
+}
+
+/* messageBox rules */
+
+#messageBox {
+	display: none;
+	position: fixed;
+	width: 300px;
+	min-height: 150px;
+	left: 40%;
+	top: 50%;
+	background: url(/images/noise.png);
+	border: 1px solid white;
+	border-radius: 5px;
+	color: #e2b12e;
+}
+
+#messageText {
+	padding: 20px;
+}
+
+#messageOK {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+/* Footer rules */
+
+#footer {
+	width: 960px;
+	height: 100px;
+	margin: auto;
+}
+
+.border {
+	/*margin-top: 20px;*/
+	height: 3px;
+	border-top: 1px solid #e2b12e;
+	border-bottom: 1px dashed #e2b12e;
+}
+
+#copyright {
+	margin-top: 20px;
+	color: white;
+}
+
+/* popup datatip rules */
+
+.popupContainer {
+	position: relative;
+	cursor: pointer;
+}
+
+.popup {
+	display: none;
+	padding: 5px;
+	background-color: rgba(0,0,0,0.98);
+	border: 1px solid white;
+	border-radius: 5px;
+	position: absolute;
+	width: 250px;
+	z-index: 1;
+	cursor: auto;
+}
+
+.popupContainer span {
+	border-bottom: 1px dotted white;
+}

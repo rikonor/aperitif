@@ -1,0 +1,14 @@
+#content {
+	height: 550px;
+	position: relative;
+}
+
+#minimap {
+	position: absolute;
+	right: 5px;
+	top: 20px;
+}
+
+form textarea {
+	width: 300px;
+}

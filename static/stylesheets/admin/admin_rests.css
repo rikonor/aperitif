@@ -1,0 +1,70 @@
+h3 { 
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+#content {
+	min-height: 525px;
+	color: #f4f4f4;
+}
+
+/* Main Content Rules*/
+
+.main_content {
+	padding: 10px;
+}
+
+#rests_list {
+	margin-top: 20px;
+}
+
+.right {
+	float: right;
+	margin-left: 10px;
+	color: #f4f4f4;
+}
+
+/* */
+
+.border {
+	clear: both;
+}
+
+/* Date Cube rules */
+
+.date {
+	float: left;
+	position: relative;
+	margin-right: 10px;
+	padding: 44px 5px 0;
+	color: #e2b12e;
+}
+
+.date .day {
+	font-size: 35px;
+	line-height: 45px;
+	position: absolute;
+	left: 5px;
+	top: 0;
+}
+
+.date .month {
+	text-transform: uppercase;
+	font-size: 25px;
+}
+
+.date .year {
+	display: block;
+	position: absolute;
+	right: -5px;
+	top: 15px;
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+/* Table rules */
+.table th, .table td {
+	padding: 4px;
+	line-height: 20px;
+	text-align: left;
+}

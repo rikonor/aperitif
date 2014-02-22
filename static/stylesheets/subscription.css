@@ -1,0 +1,105 @@
+h3, h5 { margin: 0; }
+h5 { font-size: 30px; }
+
+#content {
+  min-height: 625px;
+  color: #f4f4f4;
+  position: relative;
+}
+
+/*div.ui-datepicker{
+ font-size:5px;
+}*/
+
+.main_content {
+  width: 920px;
+  height: 500px;
+  float: left;
+  padding: 10px;
+}
+
+/* form layout */
+
+form {
+  padding-left: 40px;
+}
+
+form .form_page {
+  display: none;
+  height: 200px;
+}
+
+#subscription_type {
+  padding-left: 30px;
+}
+
+#subscription_type label:hover + #type_explain {
+  display: block;
+}
+
+#type_explain {
+  display: none;
+  position: absolute;
+  top: 250px;
+}
+
+.form_page#choose_datetime {
+  /*padding-top: 80px;*/
+}
+#subscription_datetime {
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.form_page#review .button {
+  width: 150px;
+  padding-left: 40px;
+  margin-left: 40px;
+}
+
+/* Table rules */
+.table th, .table td {
+  padding: 4px;
+  line-height: 20px;
+  text-align: left;
+}
+
+/* Pretty Radio Buttons rules begin */
+
+#subscription_type {
+  margin:4px;
+  overflow: hidden;
+}
+
+#subscription_type label {
+  cursor: pointer;
+  float:left;
+  width:170px;
+  margin:4px;
+  background-color: #404030;
+  border-radius: 8px;
+}
+
+#subscription_type label .priceHead {
+  text-align:center;
+  font-size: 26px;
+  padding: 5px 0px;
+  display:block;
+}
+
+#subscription_type label .priceBody {
+  text-align:center;
+  font-size: 20px;
+  padding: 5px 0px;
+  display:block;
+}
+
+#subscription_type label input {
+  display: none;
+}
+
+#subscription_type input:checked + span {
+  color:#F7F7F7;
+}
+
+/* Pretty Radio Buttons rules end */

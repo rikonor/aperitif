@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Contact{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/contact.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <h3>Contact us</h3>
+  <div id="minimap">
+    <iframe width="550px" height="490px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=New+York,+NY&amp;aq=1&amp;oq=New&amp;sll=33.57702,-117.727022&amp;sspn=0.083952,0.169086&amp;ie=UTF8&amp;hq=&amp;hnear=New+York&amp;t=m&amp;z=10&amp;ll=40.714353,-74.005973&amp;output=embed"></iframe>
+    <br />
+    <small><a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=New+York,+NY&amp;aq=1&amp;oq=New&amp;sll=33.57702,-117.727022&amp;sspn=0.083952,0.169086&amp;ie=UTF8&amp;hq=&amp;hnear=New+York&amp;t=m&amp;z=10&amp;ll=40.714353,-74.005973" style="color:#0000FF;text-align:left"></a></small>
+  </div>
+  <div id="contact_form">
+    <form name="contact_form" action="/contact" method="POST">
+      <label for="subject">Subject:</label>
+      <br>
+      <input type="text" name="subject" id="subject" value=""/>
+      <br>
+      <br>
+      <label for="user_message">Message:</label>
+      <br>
+      <textarea cols="40" rows="8" name="user_message" id="user_message"></textarea>
+      <br>
+      <br>
+      <input type="submit" value="Submit" name="submit" class="button" />
+    </form>
+  </div>     
+  <script>$('#linkContact').addClass('current')</script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Codes {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_codes.css" />
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Registration Codes</h3>
+		<div id="codes_list">
+		  <table class="table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Restaurant</th>
+            <th>Issued by</th>
+            <th>Uses</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for code in codes %}
+          <tr>
+            <td class="code">{{code.code}}</td>
+            <td>{{code.rest.get().name}}</td>
+            <td>{{code.issuer.get().name}}</td>
+            <td>{{code.uses}}/{{code.max_uses}}</td>
+            <td><a href="/admin/codes/edit?id={{code.key.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>			
+		</div>
+	</div>
+
+	<div class="side_content">
+		<h3>Add code</h3>
+		<form name="add_code" action="/admin/codes" method="POST">
+			<label for="rest">Restaurant:</label><br>
+      <select name="rest">
+      {% for rest in rests %}
+      	<option value="{{rest.key.id()}}">{{rest.name}}</option>
+      {% endfor %}
+      </select><br><br>
+      <label for="code">Code:</label><br>
+      <input type="text" name="code" id="code" /><br><br>
+      <label for="max_uses">Amount of uses:</label><br>
+      <input type="text" name="max_uses" id="max_uses" placeholder="Leave empty for 1" /><br><br>
+      <input type="submit" class="button" value="Add" />
+		</form>
+	</div>
+
+  <script>$('#linkCodes').addClass('current')</script>
+{% endblock %}

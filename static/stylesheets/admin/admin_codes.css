@@ -1,0 +1,86 @@
+h3 { margin-top: 0; }
+
+#content {
+	height: 525px;
+	color: #f4f4f4;
+}
+
+/* Main Content Rules*/
+
+.main_content {
+	width: 630px;
+	height: 500px;
+	float: left;
+	padding: 10px;
+	border-right: 1px dashed #e2b12e;
+	overflow-y: auto;
+}
+
+.right {
+	float: right;
+	margin-left: 10px;
+	color: #f4f4f4;
+}
+
+p {
+	font-size: 14px;
+	font-family: Century Gothic, sans-serif;
+	margin: 0;
+	padding: 10px;
+}
+
+/* Side Content Rules */
+
+.side_content {
+	width: 280px;
+	height: 500px;
+	float: right;
+	padding: 10px;
+}
+
+.side_content h3 {
+	text-align: center;
+}
+
+.side_content img {
+	padding: 5px;
+	width: 280px;
+}
+
+/* */
+
+.border {
+	clear: both;
+}
+
+/* Date Cube rules */
+
+.date {
+	float: left;
+	position: relative;
+	margin-right: 10px;
+	padding: 44px 5px 0;
+	color: #e2b12e;
+}
+
+.date .day {
+	font-size: 35px;
+	line-height: 45px;
+	position: absolute;
+	left: 5px;
+	top: 0;
+}
+
+.date .month {
+	text-transform: uppercase;
+	font-size: 25px;
+}
+
+.date .year {
+	display: block;
+	position: absolute;
+	right: -5px;
+	top: 15px;
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}

@@ -1,0 +1,32 @@
+/* Pretty Radio Buttons rules begin */
+
+#hours {
+  margin:4px;
+  overflow: hidden;
+}
+
+#hours label {
+  cursor: pointer;
+  float:left;
+  width:140px;
+  margin:4px;
+  background-color: #404030;
+  border-radius: 8px;
+}
+
+#hours label .timeHead {
+  text-align:center;
+  font-size: 18px;
+  padding: 5px 0px;
+  display:block;
+}
+
+#hours label input {
+  display: none;
+}
+
+#hours input:checked + span {
+  color: green;
+}
+
+/* Pretty Radio Buttons rules end */

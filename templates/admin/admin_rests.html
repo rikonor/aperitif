@@ -1,0 +1,49 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Restaurants {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="../stylesheets/admin/admin_rests.css" />
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="main_content">
+		<h3>Restaurants</h3>
+    <a class="button" href="/admin/rests/add">Add restaurant</a>
+		<div id="rests_list">
+		  <table class="table">
+        <thead>
+          <tr>
+            <th>Restaurant Name</th>
+            <th>Address</th>
+            <th>Phone #</th>
+            <th>Email</th>
+            <th>View</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for rest in rests %}
+          <tr>
+            <td>{{rest.name}}</td>
+            <td>{{rest.address}}</td>
+            <td>{{rest.phone}}</td>
+            <td>{{rest.email}}</td>
+            <td><a href="/admin/rests/view?id={{rest.key.id()}}">View</a></td>
+            <td><a href="/admin/rests/edit?id={{rest.key.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>			
+		</div>
+	</div>
+	
+  <script>$('#linkRests').addClass('current')</script>
+{% endblock %}

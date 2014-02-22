@@ -1,0 +1,45 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Edit - Subscription #{{subscription.key.id()}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/stylesheets/jquery.timepicker.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="/scripts/jquery.timepicker.js"></script>
+  <script src="/scripts/admin/admin_reservation_edit.js"></script>
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_view.css" />
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Edit regular time and date:</h3>
+    <form name="edit_subscription" action="/admin/subscriptions/edit?id={{subscription.key.id()}}" method="POST">
+      <label for="time">Regular Time:</label><br/>
+      <input type="text" name="time" id="timepicker" value="{{subscription.start_date.strftime("%I:%M%P")}}" /><br/><br/>
+      <input type="submit" class="button" value="Edit" />
+    </form><br/><br/>
+
+	</div>
+
+  <div class="side_content">
+    <h3>Change type</h3>
+    <label>Current type:</label>
+    <span>{{subscription.typeOf|capitalize}}</span><br/><br/>
+    {% if subscription.typeOf == 'weekly' %}
+    <a class="button" href="/admin/subscriptions/change_type?id={{subscription.key.id()}}&new_type=daily">Change to Daily</a>
+    {% elif subscription.typeOf == 'daily' %}
+    <a class="button" href="/admin/subscriptions/change_type?id={{subscription.key.id()}}&new_type=weekly">Change to Weekly</a>
+    {% elif subscription.typeOf == 'empty' %}
+    <a class="button" href="/admin/subscriptions/change_type?id={{subscription.key.id()}}&new_type=daily">Change to Daily</a>
+    <a class="button" href="/admin/subscriptions/change_type?id={{subscription.key.id()}}&new_type=weekly">Change to Weekly</a>
+    {% endif %}
+  </div>
+
+  <script>$('#linkUsers').addClass('current')</script>
+{% endblock %}

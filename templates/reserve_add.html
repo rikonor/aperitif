@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Making reservation - {{rest.name}}{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/reserve_add.css" />
+  <link rel="stylesheet" href="/stylesheets/jquery.timepicker.css" />
+  <!-- Scripts -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="/scripts/jquery.timepicker.js"></script>
+  <script src="/scripts/reserve_add.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <div class="main_content">
+    <h3>Make a new reservation</h3><br/>
+    <h5>({{rest.name}})</h5><br/>
+    <form name="reserve" action="/reserve/add?rest={{rest.key.id()}}" method="POST" onsubmit="return validateReserveForm()">
+      <input type="text" name="rest" id="rest" hidden value="{{rest.key.id()}}" />
+      <label for="date">Date:</label><br/>
+      <input type="text" name="date" id="datepicker" /><br/><br/>
+      <label for="time">Time:</label><br/>
+      <input type="text" name="time" id="timepicker" /><br/><br/>
+      <label for="duration">Duration (in hours):</label><br/>
+      <input type="text" name="duration" id="durationpicker" /><br/><br/>
+      <input type="submit" class="button" value="Reserve" />
+    </form><br>
+  </div>
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

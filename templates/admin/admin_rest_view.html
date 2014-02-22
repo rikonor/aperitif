@@ -1,0 +1,105 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Restaurant - {{rest.name}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_view.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Restaurant details</h3>
+    
+    {% if rest.users %}
+    <label>Subscribers</label>
+    <div id="users_list">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Next</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in rest.users %}
+          {% set user = user.get() %}
+          {% if user %}
+          <tr>
+            {% set next_date = user.getNextReservation(rest) %}
+            <td><a href="/admin/users/view?id={{user.key.id()}}">{{user.name}}</a></td>
+            <td>{{user.getUserSubscription(rest.name).typeOf|capitalize}}</td>
+            <td>{% if next_date %}<a href="/admin/reservations/edit?id={{next_date.key.id()}}">{{next_date.dt.strftime("%I:%M%p-%d/%m/%y")}}</a>{% else %}None{% endif %}</td>
+            <td><a href="/admin/users/view?id={{user.key.id()}}">View</a></td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+    </div><br/><br/>
+    {% endif %}
+
+    {% if reservations %}
+    <label>Upcoming reservations</label>
+    <div id="reservations_list">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody> 
+        {% for reservation in reservations %}
+          <tr>
+            <td>{{reservation.user.get().name}}</td>
+            <td>{{reservation.dt.strftime("%b %d, %Y")}}</th>
+            <td>{{reservation.dt.strftime("%I:%M%p")}}</td>
+            <td><a href="/admin/reservations/edit?id={{reservation.key.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div><br/><br/>
+    {% endif %}
+
+	</div>
+
+  <div class="side_content">
+    <h3>Details</h3>
+    <div id="rest_details">
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td>{{rest.name}}</td>
+        </tr>
+        <tr>
+          <td><label>Email</label></td>
+          <td>{{rest.email}}</td>
+        </tr>
+        <tr>
+          <td><label>Phone</label></td>
+          <td>{{rest.phone}}</td>
+        </tr>
+        <tr>
+          <td><label>Created</label></td>
+          <td>{{rest.created.strftime('%b %d, %Y')}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/admin/rests/edit?id={{rest.key.id()}}">Edit</a>
+    <a class="button" href="/admin/rests/edithours?id={{rest.key.id()}}">Open Hours</a>
+  </div>
+
+  <script>$('#linkRests').addClass('current')</script>
+{% endblock %}

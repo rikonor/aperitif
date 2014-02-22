@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% block head %}
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../stylesheets/admin/admin_login.css" />
+    <!-- Fonts -->
+     <link href=' http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- Scripts -->
+    <title>{% block title %}Aperitif Club - [ADMIN]{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <!-- Error_Header -->
+    <div id="error_header"></div>
+    <!--Header-->
+    <div id="header">
+    {% block header %}
+      <div id="logo">
+        <img src="/images/logo.png" alt="Aperitif Club Logo" width="600px" height="300px" />
+      </div>
+    {% endblock header %}
+    </div>
+    </div>
+    <!-- Content -->
+    <div id="content">
+    {% block content %}
+      <div id="login">
+        <h3>Admin Login</h3>
+        <form name="admin_login" action="/admin/login" method="POST" onsubmit="return validateLoginForm()">
+          <label for="username">Username:</label><br>
+          <input type="text" name="username" id="username" /><br><br>
+          <label for="password">Password:</label><br>
+          <input type="password" name="password" id="password" /><br><br>
+          <input type="submit" class="button" value="Login" />
+        </form><br>
+      </div>
+    {% endblock content %}
+    </div>
+    <!-- Footer -->
+    <div id="footer">
+    {% block footer %}
+      <div class="border"></div>
+      <div id="copyright">
+        <span>© Copyright 2013 - All Rights Reserved - <a href="/">Aperitif Club</a></span>
+      </div>
+    {% endblock footer %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}

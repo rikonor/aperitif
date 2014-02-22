@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}super() - Admin Login{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/stylesheets/login.css" />
+{% endblock %}
+
+<!-- Create content -->
+{% block content %}
+  <h2 class="headLine">Login</h2>
+  
+  <div class="login_box">
+    <form method="post">
+      <section id="main_properties">
+        <label>Username</label>
+        <input type="text"
+               name="username" />
+        <br />
+        <label>Password</label>
+        <input type="password"
+               name="password" />
+        <br />
+      </section>
+      <section id="messages">
+        <p id="error_message">{{ error }}</p>
+      </section>
+      <section id="buttons">
+        <input type="submit">
+      </section>
+    </form>
+  </div>
+{% endblock %}

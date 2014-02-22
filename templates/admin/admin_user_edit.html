@@ -1,0 +1,33 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Edit user {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_edit.css" />
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="main_content">
+    <h3>Edit user</h3>
+    <form name="form_user_edit" action="/admin/users/edit?id={{user.key.id()}}" method="POST">
+    <label for="first_name">First name:</label><br/>
+    <input type="text" name="first_name" id="first_name" value="{{user.name.split()[0]}}" /><br/><br/>
+    <label for="last_name">Last name:</label><br/>
+    <input type="text" name="last_name" id="last_name" value="{{user.name.split()[1]}}" /><br/><br/>
+    <label for="phone">Phone:</label><br/>
+    <input type="text" name="phone" id="phone" value="{{user.phone}}" /><br/><br/>
+    <label for="email">Email:</label><br/>
+    <input type="text" name="email" id="email" value="{{user.email}}" /><br/><br/>
+    <input type="submit" class="button" value="Save changes" /><br/><br/>
+    </form>
+  </div>
+
+  <script>$('#linkUsers').addClass('current')</script>
+{% endblock %}

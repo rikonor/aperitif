@@ -1,0 +1,66 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Users {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Users</h3>
+		<div id="users_list">
+		  <table class="table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Phone #</th>
+            <th>Subscriptions</th>
+            <th>View</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td>
+              {% if user.subscriptions %}
+              <div class="subscriptions popupContainer">
+                <div class="subscriptionsDetails popup">
+                  <table>
+                    <tbody>
+                    {% for subscription in user.subscriptions %}
+                      <tr>
+                        <td><a href="/admin/subscriptions/view?id={{subscription.id()}}">{{subscription.get().rest.get().name}}</a></td>
+                        <td><strong>({{subscription.get().typeOf|capitalize}})<strong></td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <span>{{user.subscriptions|count}}</span>
+              </div>
+              {% endif %}
+            </td>
+            <td><a href="/admin/users/view?id={{user.key.id()}}">View</a></td>
+            <td><a href="/admin/users/edit?id={{user.key.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>			
+		</div>
+	</div>
+
+  <script>$('#linkUsers').addClass('current')</script>
+{% endblock %}

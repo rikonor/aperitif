@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% block head %}
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/activation_required.css" />
+  	<!-- Fonts -->
+  	 <link href=' http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- Scripts -->
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>{% block title %}Aperitif Club - Please Activate your Account{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+  	<!-- Error_Header -->
+  	<div id="error_header"></div>
+    <!--Header-->
+    <div id="header">
+    {% block header %}
+    	<div id="logo">
+    		<img src="images/logo.png" alt="Aperitif Club Logo" width="600px" height="260px" />
+    	</div>
+    {% endblock header %}
+    </div>
+    </div>
+    <!-- Content -->
+    <div id="content">
+    {% block content %}
+      <h3>Kindly check your email<br>in order to activate your account.</h3>
+      <form name="resend_activation_email" action="/activation_required" method="POST">
+        <input type="text" name="email" id="email" placeholder="Email"/>
+        <input type="submit" class="button" value="Resend" />
+      </form>
+    {% endblock content %}
+    </div>
+    <!-- Footer -->
+    <div id="footer">
+    {% block footer %}
+    	<div class="border"></div>
+    	<div id="copyright">
+    		<span>© Copyright 2013 - All Rights Reserved - <a href="/">Aperitif Club</a></span>
+    	</div>
+    {% endblock footer %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}

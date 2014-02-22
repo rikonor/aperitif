@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - View reservations{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/reserve_view.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <div class="main_content">
+  	<h3>Reservations to {{rest.name}}</h3><br/>
+  	<div id="reservations_list">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Restaurant</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for reservation in user.reservations if reservation.get().rest.get().name == rest.name %}
+          <tr>
+            <td>{{reservation.get().rest.get().name}}</td>
+            <td>{{reservation.get().dt.strftime("%I:%M%p")}}-{{reservation.get().dtend.strftime("%I:%M%p")}}</td>
+            <td>{{reservation.get().dt.strftime("%m/%d/%Y")}}</td>
+            <td><a href="/reserve/edit?reservation={{reservation.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+  	</div>
+  </div>
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

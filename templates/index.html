@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% block head %}
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+  	<!-- Fonts -->
+  	 <link href=' http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- Scripts -->
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src='/scripts/index.js'></script>
+    <script src="/scripts/message.js"></script>
+    <title>{% block title %}Aperitif Club{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+  	<!-- Error_Header -->
+  	<div id="error_header"></div>
+    <!--Header-->
+    <div id="header">
+    {% block header %}
+    	<div id="logo">
+    		<img src="images/logo.png" alt="Aperitif Club Logo" width="600px" height="300px" />
+    	</div>
+    {% endblock header %}
+    </div>
+    </div>
+    <!-- Content -->
+    <div id="content">
+    {% block content %}
+    	<div id="login">
+    		<h3>Login</h3>
+    		<form name="login" action="/" method="POST" onsubmit="return validateLoginForm()">
+    			<label for="email">Email:</label><br>
+    			<input type="text" name="email" id="email" /><br><br>
+    			<label for="password">Password:</label><br>
+    			<input type="password" name="password" id="password" /><br><br>
+    			<input type="submit" class="button" value="Login" />
+    		</form><br>
+    		<a href="/forgot_password">Forgot your password?</a>
+    	</div>
+    	<div id="middle">
+    	</div>
+    	<div id="register">
+    		<h3>Register</h3>
+    		<form name="register" action="/reg_continue" onsubmit="return validateRegisterForm()">
+    			<label for="reg_code">Registration code:</label><br>
+    			<input type="text" name="reg_code" id="reg_code" /><br><br>
+    			<input type="submit" class="button" value="Register" />
+    		</form><br>
+    	</div>
+    {% endblock content %}
+    </div>
+    <!-- Footer -->
+    <div id="footer">
+    {% block footer %}
+    	<div class="border"></div>
+    	<div id="copyright">
+    		<span>© Copyright 2013 - All Rights Reserved - <a href="/">Aperitif Club</a></span>
+    	</div>
+    {% endblock footer %}
+    </div>
+    <div id="messageBox">
+      <div id="messageText">{{message_text}}</div>
+      <input type="button" class="button" id="messageOK" value="OK" />
+    </div>
+  </body>
+</html>
+{% endautoescape %}

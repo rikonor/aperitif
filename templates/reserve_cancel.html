@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Cancel Reservation - #{{reservation.key.id()}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_reservations_edit.css" />
+  <!-- Scripts -->
+  <script src="/scripts/admin/admin_reservation_cancel.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Cancel this reservation?</h3>
+    <div id="reservation_details">
+      <table>
+        <tr>
+          <td><label>ID</label></td>
+          <td>{{reservation.key.id()}}</td>
+        </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td>{{reservation.user.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Restaurant</label></td>
+          <td>{{reservation.rest.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Table</label></td>
+          <td>{% if reservation.table %}{{reservation.table_n}}{% else %}Any{% endif %}</td>
+        </tr>
+        <tr>
+          <td><label>Date</label></td>
+          <td>{{reservation.dt.strftime('%b %d, %Y')}}</td>
+        </tr>
+        <tr>
+          <td><label>Time</label></td>
+          <td>{{reservation.dt.strftime('%I:%M%p')}}</td>
+        </tr>
+        <tr>
+          <td><label>Created</label></td>
+          <td>{{reservation.created.strftime('%m/%d/%y-%I:%M%p')}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+	</div>
+
+  <div class="side_content">
+    <h3>Are you sure?</h3>
+    <form name="cancel_reservation_form" id="cancel_reservation_form" action="/reserve/cancel?id={{reservation.key.id()}}" method="POST">
+      <span>I'm sure</span>
+      <input type="checkbox" name="cancel_confirm" id="cancel_confirm" /><br/><br/>
+      <input type="submit" class="button" value="Confirm cancellation" />
+      or <a href="/reserve/edit?id={{reservation.key.id()}}">Go back</a>
+    </form>
+  </div>
+
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

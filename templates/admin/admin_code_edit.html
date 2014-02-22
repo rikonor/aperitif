@@ -1,0 +1,83 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Code {{code.code}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_codes.css" />
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+    <h3>Code details</h3>
+    <div id="code_details">
+      <table>
+        <tr>
+          <td><label>Code</label></td>
+          <td>{{code.code}}</td>
+        </tr>
+        <tr>
+          <td><label>Restaurant</label></td>
+          <td>{{code.rest.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Issued by</label></td>
+          <td>{{code.issuer.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Issue date</label></td>
+          <td>{{code.created.strftime('%b %d, %Y')}}</td>
+        </tr>
+        <tr>
+          <td><label>Last used</label></td>
+          <td>{% if code.last_used %}{{code.last_used.strftime('%b %d, %Y')}}{% else %}Never{% endif %}</td>
+        </tr>
+        <tr>
+          <td><label>Used by</label></td>
+          <td>
+            <div class="users popupContainer">
+              {% if code.users %}
+              <div class="usersDetails popup">
+                <table>
+                  <tbody>
+                  {% for user in code.users %}
+                    <tr>
+                      <td><a href="/admin/users/view?id={{user.id()}}">{{user.get().name}}</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              {% endif %}
+              <span>{{code.users|count}} users</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Uses</label></td>
+          <td>{{code.uses}}/{{code.max_uses}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/admin/codes/disable?id={{code.key.id()}}">Disable code</a>
+  </div>
+
+  <div class="side_content">
+    <h3>Edit code</h3>
+    <form name="edit_code" action="/admin/codes/edit?id={{code.key.id()}}" method="POST">
+      <label for="code">Code:</label><br>
+      <input type="text" name="code" id="code" value={{code.code}} /><br><br>
+      <label for="max_uses">Amount of uses:</label><br>
+      <input type="text" name="max_uses" id="max_uses" placeholder="Leave empty for 1" value="{{code.max_uses}}" /><br><br>
+      <input type="submit" class="button" value="Edit" />
+    </form>
+  </div>
+
+  <script>$('#linkCodes').addClass('current')</script>
+{% endblock %}

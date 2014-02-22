@@ -1,0 +1,29 @@
+Example for December 2013
+
+Dec 2013
+Sun Mon Tue Wed Thu Fri Sat
+1	2 	3	4	5	6	7
+8	9	10	11	12	13	14
+15	16	17	18	19	20 	21
+22	23 	24	25	26	27	28
+29	30	31
+
+Jan 2014
+Sun Mon Tue Wed Thu Fri Sat
+			1	2 	3	4	
+5	6	7	8	9	10	11	
+12	13	14	15	16	17	18
+19	20 	21 	22	23 	24	25
+26	27	28	29	30	31
+
+Scenario 1:
+	Known data:
+		Subscription type: 	Weekly
+		Starting date:		3 Dec 2013, 9:00AM
+		Current date:		3 Dec 2013
+
+	Starting outcome: 		There are no reservations.
+	Desired end outcome:	The next 4 reservations are made.
+
+	Subscription is handed to Update function:
+	

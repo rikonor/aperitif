@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}QuadBuilder v1.0 - Signup{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/stylesheets/signup.css" />
+{% endblock %}
+
+<!-- Create content -->
+{% block content %}
+  <h2 class="headLine">Signup</h2>
+  <div class="signup_box">
+
+    <form method="post">
+      <section id="main_properties">
+        <label>Username</label> 
+        <input type="text" name="username" />
+        <span id="error_message">{{username_error}}</span>
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" />
+        <span id="error_message">{{password_error}}</span>
+        <br>
+        <label>Verify</label>
+        <input type="password" name="verify" />
+        <span id="error_message">{{verify_error}}</span>
+        <br>
+        <label>Email (optional)</label>
+        <input type="text" name="email" value="{{email}}" />
+        <span id="error_message">{{email_error}}</span>
+        <br>
+      </section>
+      <section id="buttons">
+        <input type="submit">
+      </section>
+    </form>
+
+  </div>
+{% endblock %}

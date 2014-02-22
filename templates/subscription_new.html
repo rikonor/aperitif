@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Own a table!{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/jquery.timepicker.css" />
+  <!-- Scripts -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="/scripts/jquery.timepicker.js"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script src="/scripts/subscription.js"></script>
+  <link rel="stylesheet" href="/stylesheets/subscription.css" />
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  {% set rest = subscription.rest.get() %}
+  <div class="border"></div>
+  <div class="main_content">
+  	<h3>Own a table at {{rest.name}}!</h3><br/>
+    <form name="new_subscription_form" id="new_subscription_form" action="/subscription/new?id={{subscription.key.id()}}" method="POST">
+      
+      <input type="text" name="email" value="{{user.email}}" hidden/>
+      <div class="form_page" id="choose_type">
+        <h5>Choose your subscription type:</h5><br>
+        <div id="subscription_type">
+          <label>
+            <input name="subscription_type" value="daily" type="radio" />
+            <span class="priceHead">Daily</span>
+            <span class="priceBody">$999 / month</span>
+          </label>
+          <div id="type_explain">
+            <span>Daily - Own a table 5 days per week at {{rest.name}}.</span>
+          </div>
+          <label>
+            <input name="subscription_type" value="weekly" type="radio" />
+            <span class="priceHead">Weekly</span>
+            <span class="priceBody">$249 / month</span>
+          </label>
+          <div id="type_explain">
+            <span>Weekly - Own a table one day per week at {{rest.name}}.</span>
+          </div>
+        </div><br>
+      </div>
+      
+      <div class="form_page" id="choose_datetime">
+        <h5>Choose your preference:</h5>
+        <div id="subscription_datetime">
+          <label for="date">Starting date:</label><br/>
+          <input type="text" name="date" id="datepicker" /><br/><br/>
+          <label for="time">Reservation time:</label><br/>
+          <input type="text" name="time" id="timepicker" /><br/><br/>
+        </div>
+        <span>Don't worry, you can always change the day and time later.</span><br/><br/>
+        <input type="button" class="button" id="stripeButton" value="Confirm"/>
+      </div>
+      
+    </form>
+
+  </div>
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

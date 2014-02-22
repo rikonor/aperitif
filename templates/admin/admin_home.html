@@ -1,0 +1,29 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Home {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_home.css" />
+  <!-- Scripts -->
+  <script src='/scripts/home.js'></script>
+  <script src='/scripts/jquery.jcarousel.js'></script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div id="slideshowWrapper">
+    <div class="jcarousel">
+      <ul>
+        <li><img src="/images/1.jpg" /></li>
+        <li><img src="/images/2.jpg" /></li>
+        <li><img src="/images/3.jpg" /></li>
+        <li><img src="/images/4.jpg" /></li>
+      </ul>
+    </div>
+  </div>
+  <script>$('#linkHome').addClass('current')</script>
+{% endblock %}

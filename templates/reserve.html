@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Reservations{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/reserve.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <div class="main_content">
+  	<h3>Manage your reservations:</h3><br/>
+  	<div id="subscriptions_list">
+      <table class="table">
+        <tbody> 
+        {% for subscription in subscriptions %}
+          {% set subscription = subscription.get() %}
+          {% set rest = subscription.rest.get() %}
+          <tr>
+            <th>{{rest.name}}</th>
+            <td><a href="/subscription?id={{subscription.key.id()}}">Manage subscription</a></td>
+            <td>({{subscription.typeOf|capitalize()}} subscription)</td>
+          </tr>
+          {% if subscription.reservations %}
+          <tr>
+            <td>- Upcoming ---</td>
+            <td>
+              <div class="reservations popupContainer">
+                <div class="reservationsDetails popup">
+                  <table>
+                    <tbody>
+                    {% set reservations = user.getReservations(rest) %}
+                    {% for reservation in reservations %}
+                      <tr>
+                        <td>{{reservation.dt.strftime('%A, %b %d, %Y - %I:%M%p')}}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <span>{{reservations[0].dt.strftime('%A, %b %d, %Y - %I:%M%p')}} (<em>more</em>)</span>
+              </div>
+            </td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+  	</div>
+  </div>
+  <div class="side_content">
+  	<h5>Add new restaurant</h5><br><br>
+    <form name="user_add_restaurant" action="/restaurant/add" method="POST">
+      <label for="reg_code">Restaurant code</label>
+      <input type="text" name="reg_code" id="reg_code" /><br><br>
+      <input type="submit" class="button" value="Get it!" />
+    </form>
+  </div>
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

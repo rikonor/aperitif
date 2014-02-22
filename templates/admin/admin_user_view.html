@@ -1,0 +1,124 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - User - {{user.name}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_view.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>User details</h3>
+    <label>Subscriptions</label>
+		<div id="subscriptions_list">
+      <table>
+        <tbody> 
+        {% for subscription in user.subscriptions %}
+          <tr>
+            <th>{{subscription.get().rest.get().name}}</th>
+            <td><a href="/admin/subscriptions/view?id={{subscription.id()}}">Manage subscription</a></td>
+            <td>({{subscription.get().typeOf|capitalize()}} subscription)</td>
+          </tr>
+          {% if subscription.get().reservations %}
+          <tr>
+            <td>- Upcoming ---</td>
+            <td>
+              <div class="reservations popupContainer">
+                <div class="reservationsDetails popup">
+                  <table>
+                    <tbody>
+                    {% for reservation in subscription.get().reservations %}
+                      <tr>
+                        <td><a href="/admin/reservations/edit?id={{reservation.id()}}">{{reservation.get().dt.strftime('%H:%M%p-%m/%d/%y')}}</a></td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <span>{{subscription.get().reservations[0].get().dt.strftime('%H:%M%p-%m/%d/%y')}} (<em>more</em>)</span>
+              </div>
+            </td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+    </div><br/><br/>
+
+    {% if cancelledReservations %}
+    <label>Cancelled reservations</label>
+    <div id="cancelled_list">
+      <table>
+        <tbody>
+          <tr>
+            <td>- {{cancelledReservations|length}} cancelled ---</td>
+            <td>
+              <div class="reservations popupContainer">
+                <div class="reservationsDetails popup">
+                  <table>
+                    <tbody>
+                    {% for reservation in cancelledReservations %}
+                      <tr>
+                        <td><a href="/admin/reservations/edit?id={{reservation.key.id()}}">{{reservation.dt.strftime('%H:%M%p-%m/%d/%y')}}</a></td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <span>{{cancelledReservations[0].dt.strftime('%H:%M%p-%m/%d/%y')}} (<em>more</em>)</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+	</div>
+
+  <div class="side_content">
+    <h3>User details</h3>
+    <div id="user_details">
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td>{{user.name}}</td>
+        </tr>
+        <tr>
+          <td><label>Email</label></td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td><label>Phone</label></td>
+          <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+          <td><label>Active</label></td>
+          <td>{% if user.active %}Yes{% else %}No [<a href="/admin/users/activate?id={{user.key.id()}}">Activate</a>]{% endif %}</td>
+        </tr>
+        <tr>
+          <td><label>Invitations</label></td>
+          <td>{{ user.invitations }} [<a href="/admin/users/reset_invitations?id={{user.key.id()}}">Reset</a>]</td>
+        </tr>
+        <tr>
+          <td><label>Joined</label></td>
+          <td>{{user.created.strftime('%b %d, %Y')}}</td>
+        </tr>
+        <tr>
+          <td><label>Last visit</label></td>
+          <td>{{user.last_visit.strftime('%b %d, %Y')}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/admin/users/edit?id={{user.key.id()}}">Edit</a>
+  </div>
+
+  <script>$('#linkUsers').addClass('current')</script>
+{% endblock %}

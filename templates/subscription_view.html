@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Subscription #{{subscription.key.id()}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_view.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+	<div class="main_content">
+		<h3>Subscription details</h3>
+    <label>Upcoming reservations</label>
+    <div id="reservations_list">
+      <table>
+        <thead>
+          <th>Date</th>
+          <th>Time</th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody> 
+        {% for reservation in reservations %}
+          <tr>
+            <td>{{reservation.dt.strftime("%A, %b %d, %Y")}}</th>
+            <td>{{reservation.dt.strftime("%I:%M%p")}}</td>
+            <td><a href="/reserve/gift?id={{reservation.key.id()}}">Gift</a></td>
+            <td><a href="/reserve/edit?id={{reservation.key.id()}}">Edit</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div><br/><br/>
+
+	</div>
+
+  <div class="side_content">
+    <h3>Details</h3>
+    <div id="subscription_details">
+      <table>
+        <tr>
+          <td><label>Type</label></td>
+          <td>{{subscription.typeOf|capitalize}}</td>
+        </tr>
+        <tr>
+          <td><label>Restaurant</label></td>
+          <td>{{subscription.rest.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td>{{subscription.user.get().name}}</td>
+        </tr>
+        <tr>
+          <td><label>Regular time</label></td>
+          <td>{{subscription.start_date.strftime("%I:%M%p")}}</td>
+        </tr>
+        {% if subscription.typeOf == 'weekly' %}
+        <tr>
+          <td><label>Regular Day</label></td>
+          <td>{{subscription.start_date.strftime("%A")}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td><label>Created</label></td>
+          <td>{{subscription.created.strftime('%b %d, %Y')}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/subscription/edit?id={{subscription.key.id()}}">Edit</a>
+  </div>
+
+  <script>$('#linkReserve').addClass('current')</script>
+{% endblock %}

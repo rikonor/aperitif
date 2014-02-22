@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Profile{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/profile.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <div class="main_content">
+    <h3>Profile</h3><br/>
+    <div id="user_details">
+      <table>
+        <tr>
+          <td><label>Name:</label></td>
+          <td>{{user.name}}</td>
+        </tr>
+        <tr>
+          <td><label>Email:</label></td>
+          <td>{{user.email}}</td>
+        </tr>
+        {% if user.aux_email %}
+        <tr>
+          <td><label>Assistant's email:</label></td>
+          <td>{{user.aux_email}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td><label>Phone:</label></td>
+          <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+          <td><label>Subscription type:</label></td>
+          <td>Personal</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/profile/edit">Edit profile</a>
+    <a class="button" href="/profile/change_password">Change password</a>
+  </div>
+  
+  <div class="side_content">
+    <p id="invite_headline">Have your close friends own a table too!</p>
+    <form id="invite_form" action="/invite" method="POST">
+      <label for="restaurant">Choose restaurant</label><br/>
+      <select name="rest" id="rest">
+      {% for rest in user.rests %}
+        <option value="{{rest.id()}}">{{rest.get().name}}</option>
+      {% endfor %}
+      </select><br/><br/>
+      <label for="email">Friend's email</label><br/>
+      <input type="text" name="email" id="email" /><br/><br/>
+      <div id="remain">You have {{user.invitations}} invitations remaining.</div><br/>
+      <input type="submit" class="button" value="Send Invitation" />
+    </form>
+  </div>
+  <script>$('#linkProfile').addClass('current')</script>
+{% endblock %}

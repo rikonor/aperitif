@@ -1,0 +1,28 @@
+h3 { margin-top: 0; }
+
+#content {
+	min-height: 525px;
+	color: #f4f4f4;
+}
+
+/* Main Content Rules*/
+
+.main_content {
+	padding: 10px;
+}
+
+#rests_list {
+	margin-top: 50px;
+}
+
+.right {
+	float: right;
+	margin-left: 10px;
+	color: #f4f4f4;
+}
+
+/* */
+
+.border {
+	clear: both;
+}

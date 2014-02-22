@@ -1,0 +1,61 @@
+{% extends "admin/admin_base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Edit hours - {{rest.name}} {% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/admin/admin_users.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_user_view.css" />
+  <link rel="stylesheet" href="/stylesheets/admin/admin_rest_edit_hours.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="main_content">
+    <h3>Restaurant Open Hours</h3>
+
+    <form name="rest_edit_hours" id="rest_edit_hours" action="/admin/rests/edithours?id={{rest.key.id()}}" method="POST">
+      <div id="hours">
+      {% for hour in hoursInfo %}
+        <label>
+          <input name="hour{{hour[0].hour}}" type="checkbox" {% if hour[1] %}checked{% endif %}/>
+          <span class="timeHead">{{hour[0].strftime("%H:%M")}}</span>
+        </label>
+      {% endfor %}
+      </div><br>
+      <input class="button" type="submit" value="Confirm hours" />
+    </form>
+
+  </div>
+
+  <div class="side_content">
+    <h3>Details</h3>
+    <div id="rest_details">
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td>{{rest.name}}</td>
+        </tr>
+        <tr>
+          <td><label>Email</label></td>
+          <td>{{rest.email}}</td>
+        </tr>
+        <tr>
+          <td><label>Phone</label></td>
+          <td>{{rest.phone}}</td>
+        </tr>
+        <tr>
+          <td><label>Created</label></td>
+          <td>{{rest.created.strftime('%b %d, %Y')}}</td>
+        </tr>
+      </table>
+    </div><br/><br/>
+    <a class="button" href="/admin/rests/edit?id={{rest.key.id()}}">Edit</a>
+  </div>
+
+  <script>$('#linkRests').addClass('current')</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - About{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <link rel="stylesheet" href="/stylesheets/about.css" />
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  
+  <div class="main_content">
+    <h3>Aperitif Club</h3>
+    <div class="date">
+      <span class="day">29</span>
+      <span class="month">Dec</span>
+      <span class="year">2013</span>
+    </div>
+    <img src="images/3.jpg" width="300" class="right" alt="" />
+    <p>Coming soon...</p>
+  </div>
+
+  <div class="side_content">
+    <h3>Recent news</h3>
+    <img src="images/1.jpg" width="280" alt="" />
+    <p>Coming soon...</p>
+    <p>To request information or a prospectus, kindly send us a note at <a href="mailto:PatronService@AperitifClub.com">PatronService@AperitifClub.com</a></p>
+  </div>
+  <script>$('#linkAbout').addClass('current')</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}{{ super() }} - Edit your profile{% endblock %}
+
+<!-- Edit head for CSS and JS -->
+{% block head %}
+  {{ super() }}
+  <!-- CSS -->
+  <!-- Scripts -->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}
+  <div class="border"></div>
+  <h3>Edit profile</h3>
+  <div id="contact_form">
+    <form action="/profile/edit" method="post">
+      <label for="first_name">First name:</label><br>
+      <input type="text" name="first_name" id="first_name" value="{{user.name.split()[0]}}" /><br><br>
+      <label for="last_name">Last name:</label><br>
+      <input type="text" name="last_name" id="last_name" value="{{user.name.split()[1]}}" /><br><br>
+      <label for="phone">Phone:</label><br>
+      <input type="text" name="phone" id="phone" value="{{user.phone}}" /><br><br>
+      <label for="email">Email:</label><br>
+      <input type="text" name="email" id="email" value="{{user.email}}" /><br><br>
+      <label for="aux_email">Assistant's email:</label><br>
+      <input type="text" name="aux_email" id="aux_email" value="{{user.aux_email}}" /><br><br>
+      <input type="submit" value="Save changes" name="submit" class="button" /><br><br>
+    </form>
+  </div>     
+  <script>$('#linkProfile').addClass('current')</script>
+{% endblock %}

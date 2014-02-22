@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% block head %}
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/base.css" />
+    <!-- Fonts -->
+     <link href=' http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- Scripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/scripts/message.js"></script>
+    <script src="/scripts/base.js"></script>
+    <title>{% block title %}Aperitif Club [TEST]{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <!--Header-->
+    <div id="header">
+    {% block header %}
+      <div id="logo">
+        <a href="/"><img src="/images/logo.png" alt="Aperitif Club Logo" width="225px" height="115px" /></a>
+      </div>
+      <div id="navBar">
+        <ul id="navBarList">
+          <li><a id="linkHome" href="/home">Home</a></li>
+          <li><a id="linkProfile" href="/profile">Profile</a></li>
+          <li><a id="linkReserve" href="/reserve">Reserve</a></li>
+          <li><a id="linkAbout" href="/about">About</a></li>
+          <li><a id="linkContact" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div id="userLog">
+        <h6>Welcome, {{user.name.split()[0]}}!</h6>
+        <h6><a href="/logout">Logout</a></h6>
+      </div>
+    {% endblock header %}
+    </div>
+    </div>
+    <!-- Content -->
+    <div id="content">
+    {% block content %}
+    {% endblock content %}
+    </div>
+    <!-- Message -->
+    <div id="messageBox">
+      <div id="messageText">{{message_text}}</div>
+      <input type="button" class="button" id="messageOK" value="OK" />
+    </div>
+    <!-- Footer -->
+    <div id="footer">
+    {% block footer %}
+      <div class="border"></div>
+      <div id="copyright">
+        <span>© Copyright 2013 - All Rights Reserved - <a href="/">Aperitif Club</a></span>
+      </div>
+    {% endblock footer %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}
